@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./hangman.css" />
+    <title>Hangman Game</title>
+  </head>
+  
+  <header>
+    <div class="container">
+      <h1 id = "Title">Hangman Game</h1>
+    </div>
+    <div class="description">
+      <p>Welcome to the hangman game! Choose a subject from below! You will have 9 chances to guess the letters to the word. Once you run out, Game Over!</p>
+    </div>
+  </header>
+
+  <body>
+    <div class="wrapper">
+      <div class="start">
+        <button id="button">Choice</button>
+      </div>
+    </div>
+    <div class="wrapper" display="hidden">
+      <div class="main">
+        <li id="wins">Wins</li>
+        <li id = "losses">Losses</li>
+        <li id = "lettersUsed">Letters Used:[]</li>
+        <li id="chances">Chances: </li>
+        <img src="./6.png">
+      </div>
+      <div class="wordBlank">
+        <h1 id = "blanks">_ _ _ _ _ _ _ </h1>
+      </div>
+    </div>
+  </body>
+</html>

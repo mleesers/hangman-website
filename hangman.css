@@ -1,0 +1,7 @@
+header{
+    background: #176087;
+    display: flex;
+    justify-content: space-between;
+    height:6rem;
+    text-align:center;
+}
