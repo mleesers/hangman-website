@@ -47,11 +47,13 @@ function blankWord(word){
 //where actual gameplay happens
 function game(letters,blanks, word){
     var chances = 9;
-    var used = [];
+    var used = [1,2,3];
     document.getElementById('container').style.display = 'none';
     document.getElementById('wordBlank').style.display = 'block';
     document.getElementById('mainScreen').style.display = 'block';
+    
     while(chances > 0){
+        document.getElementById('lettersUsed').innerHTML = "Letters Used: " + used;
         document.getElementById('chances').innerHTML = "Chances " + chances;
         if (blanks == letters){
             print("Congrats! You won");
