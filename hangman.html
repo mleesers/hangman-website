@@ -12,28 +12,35 @@
     <div class="container">
       <h1 id = "Title">Hangman Game</h1>
     </div>
-    <div class="description">
-      <p>Welcome to the hangman game! Choose a subject from below! You will have 9 chances to guess the letters to the word. Once you run out, Game Over!</p>
+    <div>
+      <p id="description">Welcome to the hangman game! Choose a subject from below! You will have 9 chances to guess the letters to the word. Once you run out, Game Over!</p>
     </div>
   </header>
 
-  <body>
-    <div class="wrapper">
-      <div class="start">
-        <button id="button">Choice</button>
-      </div>
+  <container id="container">
+    <div id="start" display=none>
+      <button id="button1">Horror Characters</button>
+      <button id="button2">Pokemon</button>
+      <button id="button3">Mortal Kombat Characters</button>
     </div>
-    <div class="wrapper" display="hidden">
-      <div class="main">
-        <li id="wins">Wins</li>
-        <li id = "losses">Losses</li>
-        <li id = "lettersUsed">Letters Used:[]</li>
-        <li id="chances">Chances: </li>
-        <img src="./6.png">
-      </div>
-      <div class="wordBlank">
-        <h1 id = "blanks">_ _ _ _ _ _ _ </h1>
-      </div>
+  </container>
+
+  <body id="main">   
+    <div id="mainScreen" style="display: none;">
+      <block>
+        <ul id ="list">
+          <li id="wins"></li>
+          <li id = "losses"></li>
+          <li id = "lettersUsed"></li>
+          <li id="chances"></li>
+        </ul>
+      </block>
+      <img id="image" src="./6.png">
     </div>
+    <footer id="wordBlank">
+      <h1 id = "blanks">_ r _ _ a _ _ </h1>
+    </footer>
+    <script src="./hangman.js"></script>
   </body>
+
 </html>

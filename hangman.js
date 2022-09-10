@@ -48,15 +48,18 @@ function blankWord(word){
 function game(letters,blanks, word){
     var chances = 9;
     var used = [];
+    document.getElementById('container').style.display = 'none';
+    document.getElementById('wordBlank').style.display = 'block';
+    document.getElementById('mainScreen').style.display = 'block';
     while(chances > 0){
+        document.getElementById('chances').innerHTML = "Chances " + chances;
         if (blanks == letters){
             print("Congrats! You won");
             end();
         }
-        var choice = window.prompt("Do you want to guess the letter or word?[l/w]:");
         if(choice == 'l'){
             var check = 0;
-            var letterChoice = window.prompt("what letter would you like to choose?:");
+            var letterChoice =console.log("what letter would you like to choose?:");
             letterInWord = false;
             for(var i = 0; i < letters.length; i++){
                 if(letters[i] == letterChoice){
@@ -85,32 +88,21 @@ function game(letters,blanks, word){
                 console.log("Correct!");
             }
         }
-        else if(choice == 'w'){
-            var wordGuess = window.prompt("what is your guess?");
-            if(wordGuess == word){
-                console.log("you won!");
-                end();
-            }
-            else{
-                console.log("you sucks");
-                end();
-            }
-        }
     }
 }
 function end(){
     console.log("you have lost")
 }
 //gives choice to choose catgeory
-function menu(choice){
-    var choice = window.prompt("Pick a category(p,m,h): ");
-    if(choice == 'p'){
-        pokemon();
-    }else if(choice == 'm'){
-        mortal();
-    }else if(choice == 'h'){
+function menu(){
+    document.getElementById('button1').addEventListener('click', () => {
         horror();
-    }
-    return;
+    });
+    document.getElementById('button2').addEventListener('click', () => {
+        pokemon();
+    });
+    document.getElementById('button3').addEventListener('click', () => {
+        mortal();
+    });
 }
 menu();
