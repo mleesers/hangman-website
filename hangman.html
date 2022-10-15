@@ -27,18 +27,22 @@
 
   <body id="main">   
     <div id="mainScreen" style="display: none;">
-      <block>
+      <section>
         <ul id ="list">
           <li id="wins"></li>
           <li id = "losses"></li>
           <li id = "lettersUsed"></li>
           <li id="chances"></li>
         </ul>
-      </block>
-      <img id="image" src="./6.png">
+      </section>
+      <section id="guessArea">
+        <img id="image" src="./6.png">
+        <input type="text" id="input" placeholder="Enter letter or word guess here">
+        <button id="submit">Submit</button>
+      </section>
     </div>
     <footer id="wordBlank">
-      <h1 id = "blanks">_ r _ _ a _ _ </h1>
+      <h1 id = "blanks"></h1>
     </footer>
     <script src="./hangman.js"></script>
   </body>

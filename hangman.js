@@ -1,5 +1,5 @@
 // declaring global variables
-var word, letters, blanks;
+var word, letters, blanks, chances;
 
 
 
@@ -12,6 +12,8 @@ function pokemon(){
     blankWord(word);
     return;
 }
+
+
 // fcuntion chooses word from mortal characters list
 function mortal(){
     var mortalCharacters = ["mileena","reptile","johnny cage","scorpion","subzero","raiden","kitana","baraka","shinnok","takeda"];
@@ -21,6 +23,9 @@ function mortal(){
     blankWord(word);
     return;
 }
+
+
+
 // function horror chooses word from horror list
 function horror(){
     var horrorCharacters = ["freddie","jason","michael myers","pinhead","ghostface","chucky","hannibal","leatherface","jigsaw","slender man"];
@@ -42,59 +47,40 @@ function blankWord(word){
     }
     console.log(blanks, letters)
     game(letters,blanks,word)
+
 }
 
-//where actual gameplay happens
-function game(letters,blanks, word){
-    var chances = 9;
-    var used = [1,2,3];
-    document.getElementById('container').style.display = 'none';
-    document.getElementById('wordBlank').style.display = 'block';
-    document.getElementById('mainScreen').style.display = 'block';
-    
-    while(chances > 0){
-        document.getElementById('lettersUsed').innerHTML = "Letters Used: " + used;
-        document.getElementById('chances').innerHTML = "Chances " + chances;
-        if (blanks == letters){
-            print("Congrats! You won");
-            end();
-        }
-        if(choice == 'l'){
-            var check = 0;
-            var letterChoice =console.log("what letter would you like to choose?:");
-            letterInWord = false;
-            for(var i = 0; i < letters.length; i++){
-                if(letters[i] == letterChoice){
-                    letterInWord == true;
-                }
-            }
-            if(letterChoice in used){
-                console.log("letter already chosen");
-            }
-            else if(letterInWord = false){
-                chances -= 1;
-                used.push(letterChoice);
-                if(chances > 0){
-                    console.log("incorrect!, You have " + chances + "chances remaining");
-                }
-                else{
-                    console.log("you're out of chances");
-                    end();
-                }
-            }
-            else if(letterInWord == true){
-                used.push(letterChoice);
-                for(var i = 0; i < blanks.length; i++){
-                    blanks[i] = letterChoice;
-                }
-                console.log("Correct!");
-            }
-        }
-    }
+function main(){
+    //change display
+    //while loop 
+    //take guess
+    //call checkLetter(or word based on length)
 }
-function end(){
-    console.log("you have lost")
+
+function checkLetter(letterGuess,word){
+
 }
+
+function checkWord(wordGuess){
+
+}
+
+function wrongGuess(letterGuess){
+
+}
+
+function rightGuess(letterGuess,blanks, letters){
+
+}
+
+function win(){
+
+}
+
+function lose(){
+
+}
+
 //gives choice to choose catgeory
 function menu(){
     document.getElementById('button1').addEventListener('click', () => {
@@ -107,4 +93,5 @@ function menu(){
         mortal();
     });
 }
+
 menu();
