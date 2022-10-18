@@ -1,5 +1,7 @@
 // declaring global variables
-var word, letters, blanks, chances;
+var word, letters, blanks, guess;
+var chances = 9;
+picCounter = 1;
 
 
 
@@ -30,8 +32,6 @@ function mortal(){
 function horror(){
     var horrorCharacters = ["freddie","jason","michael myers","pinhead","ghostface","chucky","hannibal","leatherface","jigsaw","slender man"];
     word = horrorCharacters[Math.floor(Math.random()*horrorCharacters.length)];
-    console.log("you chose horror");
-    console.log(word);
     blankWord(word);
     return;
 }
@@ -43,33 +43,49 @@ function blankWord(word){
     blanks = [];
     for(var i = 0; i < word.length; i++){
         letters.push(word[i]);
-        blanks.push('_')
+        blanks.push('_');
     }
-    console.log(blanks, letters)
-    game(letters,blanks,word)
-
+    main();
 }
-
+function gamePlay(){
+    console.log(word);
+}
 function main(){
+    console.log(blanks, letters);
     //change display
+    document.getElementById('container').style.display = 'none';
+    document.getElementById('wordBlank').style.display = 'block';
+    document.getElementById('mainScreen').style.display = 'block';
     //while loop 
-    //take guess
-    //call checkLetter(or word based on length)
+    while(chances > 0){
+        document.getElementById("submit").onclick = function(){
+            guess = document.getElementById("input").value;
+            if(guess.length > 1){
+                checkWord(guess);
+            }else if(guess.length == 1){
+                checkLetter(guess);
+            }else{
+                console.log("please enter a letter");
+            }
+        };
+        chances -=1;
+    }
+    
 }
 
-function checkLetter(letterGuess,word){
+function checkLetter(guess){
+    console.log(guess + word + " letter");
+}
+
+function checkWord(guess){
+    console.log(guess + word + " word");
+}
+
+function wrongGuess(guess){
 
 }
 
-function checkWord(wordGuess){
-
-}
-
-function wrongGuess(letterGuess){
-
-}
-
-function rightGuess(letterGuess,blanks, letters){
+function rightGuess(guess,blanks, letters){
 
 }
 
