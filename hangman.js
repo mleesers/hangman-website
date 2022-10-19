@@ -2,17 +2,17 @@
 var word, letters, blanks, guess;
 var chances = 9;
 picCounter = 1;
-
-
+var used = []
+var wins = 0;
+var losses = 0;
+realChances = 9;
 
 // function chooses word from pokemon list
 function pokemon(){
     var pokemons = ["pikachu","gengar","bulbasaur","chimchar","charmander","squirtle","eevee","magikarp","dratini","gardevoir"];
     word = pokemons[Math.floor(Math.random()*pokemons.length)];
-    console.log("you chose pokemon");
-    console.log(word);
+    document.getElementById('description').innerHTML = "You chose Pokemon. Good Luck!";
     blankWord(word);
-    return;
 }
 
 
@@ -20,10 +20,8 @@ function pokemon(){
 function mortal(){
     var mortalCharacters = ["mileena","reptile","johnny cage","scorpion","subzero","raiden","kitana","baraka","shinnok","takeda"];
     word = mortalCharacters[Math.floor(Math.random()*mortalCharacters.length)];
-    console.log("you chose mortal");
-    console.log(word);
+    document.getElementById('description').innerHTML = "You chose Mortal Kombat characters. Good Luck!";
     blankWord(word);
-    return;
 }
 
 
@@ -32,8 +30,8 @@ function mortal(){
 function horror(){
     var horrorCharacters = ["freddie","jason","michael myers","pinhead","ghostface","chucky","hannibal","leatherface","jigsaw","slender man"];
     word = horrorCharacters[Math.floor(Math.random()*horrorCharacters.length)];
+    document.getElementById('description').innerHTML = "You chose Horror Characters. Good Luck!"
     blankWord(word);
-    return;
 }
 
 
@@ -56,17 +54,24 @@ function main(){
     document.getElementById('container').style.display = 'none';
     document.getElementById('wordBlank').style.display = 'block';
     document.getElementById('mainScreen').style.display = 'block';
+    document.getElementById('lettersUsed').innerHTML = "Letters Used: " + used;
+    document.getElementById('chances').innerHTML = "Chances: " + realChances;
+    document.getElementById('wins').innerHTML = "Wins: " + wins;
+    document.getElementById('losses').innerHTML = "Losses: " + losses;
+    document.getElementById('blanks').innerHTML = blanks;
     //while loop 
-    while(chances > 0){
+    while(chances >= 1){
+        
         document.getElementById("submit").onclick = function(){
             guess = document.getElementById("input").value;
             if(guess.length > 1){
-                checkWord(guess);
+                checkWord(guess.toLowerCase());
             }else if(guess.length == 1){
-                checkLetter(guess);
+                checkLetter(guess.toLowerCase());
             }else{
                 console.log("please enter a letter");
             }
+            document.getElementById("input").value='';
         };
         chances -=1;
     }
@@ -74,18 +79,41 @@ function main(){
 }
 
 function checkLetter(guess){
-    console.log(guess + word + " letter");
+   var letterInWord = false;
+   for(var i =0;i < letters.length; i++){
+    if(letters[i] == guess){
+        letterInWord = true;
+    }
+   }
+   if(letterInWord == true){
+        rightGuess();
+   }else if(letterInWord == false){
+        wrongGuess();
+   }
 }
 
 function checkWord(guess){
-    console.log(guess + word + " word");
+    if(guess == word){
+        document.getElementById('blanks').innerHTML = word;
+    }else{
+        wrongGuess();
+    }
 }
 
-function wrongGuess(guess){
-
+function wrongGuess(){
+    used.push(guess);
+    document.getElementById('lettersUsed').innerHTML = "Letters Used: " + used;
+    realChances -= 1;
+    document.getElementById('chances').innerHTML = "Chances: " + realChances;
 }
 
-function rightGuess(guess,blanks, letters){
+function rightGuess(){
+    for(var i = 0;i<blanks.length;i++){
+        if(letters[i] === guess){
+            blanks[i] = guess;
+        }
+    }
+    document.getElementById('blanks').innerHTML = blanks;
 
 }
 
