@@ -6,6 +6,9 @@ var used = []
 var wins = 0;
 var losses = 0;
 realChances = 9;
+var num = 1;
+
+
 
 // function chooses word from pokemon list
 function pokemon(){
@@ -45,20 +48,19 @@ function blankWord(word){
     }
     main();
 }
-function gamePlay(){
-    console.log(word);
-}
+
 function main(){
     console.log(blanks, letters);
     //change display
     document.getElementById('container').style.display = 'none';
     document.getElementById('wordBlank').style.display = 'block';
     document.getElementById('mainScreen').style.display = 'block';
-    document.getElementById('lettersUsed').innerHTML = "Letters Used: " + used;
+    document.getElementById('lettersUsed').innerHTML = "Letters Used: [" + used.join(' ') + "]";
     document.getElementById('chances').innerHTML = "Chances: " + realChances;
     document.getElementById('wins').innerHTML = "Wins: " + wins;
     document.getElementById('losses').innerHTML = "Losses: " + losses;
-    document.getElementById('blanks').innerHTML = blanks;
+    document.getElementById('blanks').innerHTML = blanks.join(' ')
+    
     //while loop 
     while(chances >= 1){
         
@@ -101,10 +103,17 @@ function checkWord(guess){
 }
 
 function wrongGuess(){
+    var currImg = "img" + num;
     used.push(guess);
-    document.getElementById('lettersUsed').innerHTML = "Letters Used: " + used;
+    document.getElementById('lettersUsed').innerHTML = "Letters Used: [" + used.join(' ') + "]";
     realChances -= 1;
     document.getElementById('chances').innerHTML = "Chances: " + realChances;
+    if(currImg != 'img10'){
+        document.getElementById("img"+num).style.display = 'none';
+        num += 1;
+        document.getElementById("img"+num).style.display = 'block';
+    }
+    
 }
 
 function rightGuess(){
@@ -113,8 +122,7 @@ function rightGuess(){
             blanks[i] = guess;
         }
     }
-    document.getElementById('blanks').innerHTML = blanks;
-
+    document.getElementById('blanks').innerHTML = blanks.join(' ');
 }
 
 function win(){

@@ -62,14 +62,19 @@ li{
     color: #084566;
     text-align: right;
 }
-
+.imgg{
+    height: 23rem;
+    min-width: 33rem;
+}
 img {
     height: 23rem;
     min-width: 33rem;
 }
+.img{
+    display:none;
+}
 .images-container{
     display:flex;
-    overflow: hidden;
     width:33rem;
     align-items: center;
     margin-left: auto;
