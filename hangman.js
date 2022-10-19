@@ -146,10 +146,10 @@ function rightGuess(){
     }
     console.log(blanks,letters);
     document.getElementById('blanks').innerHTML = blanks.join(' ');
-    winCheck();
+    winCheck(blanks,letters);
 
 }
-function winCheck(){
+function winCheck(blanks,letters){
     if(blanks === letters){
         console.log("why")
         win();
