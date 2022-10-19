@@ -3,12 +3,25 @@ var word, letters, blanks, guess;
 var chances = 9;
 picCounter = 1;
 var used = []
-var wins = 0;
-var losses = 0;
 realChances = 9;
 var num = 1;
+var wins = localStorage.getItem('wins');
+var losses = localStorage.getItem('losses');
 
-
+if (wins === undefined || wins === null || wins.length === 0)
+{
+    wins = 0;
+    localStorage.setItem('wins',wins);
+}else{
+    var wins = localStorage.getItem('wins');
+}
+if (losses === undefined || losses === null || losses.length === 0)
+{
+    losses = 0;
+    localStorage.getItem('losses');
+}else{
+    var losses = localStorage.getItem('losses');
+}
 
 // function chooses word from pokemon list
 function pokemon(){
@@ -80,17 +93,23 @@ function main(){
 }
 
 function checkLetter(guess){
-   var letterInWord = false;
-   for(var i =0;i < letters.length; i++){
-    if(letters[i] == guess){
-        letterInWord = true;
-    }
+    var onlyLetters = /^[a-z]*$/.test(guess);
+    var letterInWord = false;
+   if(onlyLetters == false){
+        console.log("try again")
+   }else{
+        for(var i =0;i < letters.length; i++){
+            if(letters[i] == guess){
+                letterInWord = true;
+            }
+        }
+        if(letterInWord == true){
+                rightGuess();
+        }else if(letterInWord == false){
+                wrongGuess();
+        }
    }
-   if(letterInWord == true){
-        rightGuess();
-   }else if(letterInWord == false){
-        wrongGuess();
-   }
+   
 }
 
 function checkWord(guess){
@@ -112,6 +131,8 @@ function wrongGuess(){
         document.getElementById("img"+num).style.display = 'none';
         num += 1;
         document.getElementById("img"+num).style.display = 'block';
+    }else{
+        lose();
     }
     
 }
@@ -129,9 +150,16 @@ function win(){
     document.getElementById('description').innerHTML = "You win!";
     document.getElementById('mainScreen').style.display = 'none';
     document.getElementById('end').style.display='block';
+    wins ++;
+    localStorage.setItem('wins',wins);
     document.getElementById("yes").onclick = function(){
         location.reload();
     };
+    document.getElementById("no").onclick = function(){
+        location.reload();
+    };
+    
+
 }
 
 function lose(){
@@ -139,7 +167,13 @@ function lose(){
     document.getElementById('wordBlank').style.display = 'none';
     document.getElementById('mainScreen').style.display = 'none';
     document.getElementById('end').style.display='block';
-    document.getElementById("yes").onclick = function(){
+    losses ++;
+    localStorage.setItem('losses',losses);
+    document.getElementById("yes").onclick = function(event){
+        event.preventDefault();
+        location.reload();
+    };
+    document.getElementById("no").onclick = function(){
         location.reload();
     };
 }
