@@ -57,8 +57,7 @@ function main(){
     document.getElementById('mainScreen').style.display = 'block';
     document.getElementById('lettersUsed').innerHTML = "Letters Used: [" + used.join(' ') + "]";
     document.getElementById('chances').innerHTML = "Chances: " + realChances;
-    document.getElementById('wins').innerHTML = "Wins: " + wins;
-    document.getElementById('losses').innerHTML = "Losses: " + losses;
+    document.getElementById('wins').innerHTML = "Wins: " + wins + "  Losses: " + losses;
     document.getElementById('blanks').innerHTML = blanks.join(' ')
     
     //while loop 
@@ -97,8 +96,9 @@ function checkLetter(guess){
 function checkWord(guess){
     if(guess == word){
         document.getElementById('blanks').innerHTML = word;
+        win();
     }else{
-        wrongGuess();
+        lose();
     }
 }
 
@@ -126,15 +126,27 @@ function rightGuess(){
 }
 
 function win(){
-
+    document.getElementById('description').innerHTML = "You win!";
+    document.getElementById('mainScreen').style.display = 'none';
+    document.getElementById('end').style.display='block';
+    document.getElementById("yes").onclick = function(){
+        location.reload();
+    };
 }
 
 function lose(){
-
+    document.getElementById('description').innerHTML = "You lost! The word was " + word;
+    document.getElementById('wordBlank').style.display = 'none';
+    document.getElementById('mainScreen').style.display = 'none';
+    document.getElementById('end').style.display='block';
+    document.getElementById("yes").onclick = function(){
+        location.reload();
+    };
 }
 
-//gives choice to choose catgeory
+//gives choice to choose category
 function menu(){
+
     document.getElementById('button1').addEventListener('click', () => {
         horror();
     });

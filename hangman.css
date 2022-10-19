@@ -11,7 +11,10 @@ header{
     color:azure;
 
 }
-
+ul{
+    display: flex;
+    justify-content: space-between;
+}
 .Title{
     padding-left: 50px;
     width:500px;
@@ -137,3 +140,11 @@ footer{
     margin-top: none;
 }
 
+#lettersUsed{
+    left:50%;
+    right:50%;
+}
+/*end game*/
+#end{
+    display:none;
+}
