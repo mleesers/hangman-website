@@ -34,7 +34,7 @@ function pokemon(){
 
 // fcuntion chooses word from mortal characters list
 function mortal(){
-    var mortalCharacters = ["mileena","reptile","johnny cage","scorpion","subzero","raiden","kitana","baraka","shinnok","takeda"];
+    var mortalCharacters = ["mileena","reptile","johnnycage","scorpion","subzero","raiden","kitana","baraka","shinnok","takeda"];
     word = mortalCharacters[Math.floor(Math.random()*mortalCharacters.length)];
     document.getElementById('description').innerHTML = "You chose Mortal Kombat characters. Good Luck!";
     blankWord(word);
@@ -44,7 +44,7 @@ function mortal(){
 
 // function horror chooses word from horror list
 function horror(){
-    var horrorCharacters = ["freddie","jason","michael myers","pinhead","ghostface","chucky","hannibal","leatherface","jigsaw","slender man"];
+    var horrorCharacters = ["freddie","jason","michaelmyers","pinhead","ghostface","chucky","hannibal","leatherface","jigsaw","slenderman"];
     word = horrorCharacters[Math.floor(Math.random()*horrorCharacters.length)];
     document.getElementById('description').innerHTML = "You chose Horror Characters. Good Luck!"
     blankWord(word);
@@ -76,22 +76,22 @@ function main(){
     //while loop 
     while(chances >= 1){
         
-        document.getElementById("submit").onclick = function(){
-            guess = document.getElementById("input").value;
-            if(guess.length > 1){
-                checkWord(guess.toLowerCase());
-            }else if(guess.length == 1){
-                checkLetter(guess.toLowerCase());
-            }else{
-                console.log("please enter a letter");
+        document.addEventListener("keyup", function(event) {
+            if (event.code === 'Enter') {
+                guess = document.getElementById("input").value;
+                if(guess.length > 1){
+                    checkWord(guess.toLowerCase());
+                }else if(guess.length == 1){
+                    checkLetter(guess.toLowerCase());
+                }else{
+                    console.log("please enter a letter");
+                }
+                document.getElementById("input").value='';
             }
-            document.getElementById("input").value='';
-        };
-        chances -=1;
+        });  
+        chances -= 1;
     }
-    
 }
-
 function checkLetter(guess){
     var onlyLetters = /^[a-z]*$/.test(guess);
     var letterInWord = false;
@@ -138,14 +138,25 @@ function wrongGuess(){
 }
 
 function rightGuess(){
+   
     for(var i = 0;i<blanks.length;i++){
         if(letters[i] === guess){
             blanks[i] = guess;
         }
     }
+    console.log(blanks,letters);
     document.getElementById('blanks').innerHTML = blanks.join(' ');
-}
+    winCheck();
 
+}
+function winCheck(){
+    if(blanks === letters){
+        console.log("why")
+        win();
+    }else{
+        console.log(blanks,letters)
+    }
+}
 function win(){
     document.getElementById('description').innerHTML = "You win!";
     document.getElementById('mainScreen').style.display = 'none';
