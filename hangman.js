@@ -144,17 +144,22 @@ function rightGuess(){
             blanks[i] = guess;
         }
     }
-    console.log(blanks,letters);
+    console.log({blanks,letters});
     document.getElementById('blanks').innerHTML = blanks.join(' ');
-    winCheck(blanks,letters);
+    checkWin();
 
 }
-function winCheck(blanks,letters){
-    if(blanks === letters){
-        console.log("why")
+function checkWin(){
+    count = 0;
+    for(i=0;i<blanks.length;i++){
+        if(blanks[i]==letters[i]){
+            count += 1;
+        }else{
+            continue;
+        }
+    }
+    if(count == blanks.length){
         win();
-    }else{
-        console.log(blanks,letters)
     }
 }
 function win(){
